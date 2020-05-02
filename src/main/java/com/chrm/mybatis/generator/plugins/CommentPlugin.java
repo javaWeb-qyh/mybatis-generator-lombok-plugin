@@ -143,7 +143,8 @@ public class CommentPlugin extends PluginAdapter {
                     Element e = (Element)i$.next();
                     int id = es.indexOf(e);
                     es.add(id, (Element) map.get(e));
-                    es.add(id, new TextElement(""));
+                    //去除mapper.xml中resultMap字段间的空格
+                    //es.add(id, new TextElement(""));
                 }
 
                 return;
@@ -200,9 +201,10 @@ public class CommentPlugin extends PluginAdapter {
 
     @Override
     public boolean sqlMapDocumentGenerated(Document document, IntrospectedTable introspectedTable) {
-        document.getRootElement().addElement(new TextElement(""));
-        document.getRootElement().addElement(new TextElement("<!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()) + " ### -->\n\n\n"));
-        document.getRootElement().addElement(new TextElement("<!-- Your codes goes here!!! -->"));
+        //去除mapper.xml文件中生成的重复代码(resultMap,及增删改查方法实现)
+//         document.getRootElement().addElement(new TextElement(""));
+//         document.getRootElement().addElement(new TextElement("<!-- ### 以上代码由MBG + CommentPlugin自动生成, 生成时间: " + (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date()) + " ### -->\n\n\n"));
+//         document.getRootElement().addElement(new TextElement("<!-- Your codes goes here!!! -->"));
         document.getRootElement().addElement(new TextElement(""));
         return true;
     }
