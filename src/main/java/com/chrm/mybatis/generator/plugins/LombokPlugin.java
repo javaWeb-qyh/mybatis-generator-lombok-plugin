@@ -123,7 +123,7 @@ public class LombokPlugin extends PluginAdapter {
         topLevelClass.addAnnotation("@Data");
         topLevelClass.addAnnotation("@NoArgsConstructor");
         topLevelClass.addAnnotation("@AllArgsConstructor");
-
+        //在这里可以添加更多需要的lombok注解
     }
 
 }
